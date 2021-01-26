@@ -1,3 +1,8 @@
+import 'dart:async';
+
+import 'dart:core';
+
+
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'dart:async';
@@ -34,10 +39,29 @@ Future<Database> get _db async {
             "$phoneColumn TEXT, $imgColumn TEXT)"
     );
   });
+}
 
-  }
+Future<Contact> saveContact(Contact contact) async{
+  Database dbContact = await _db; //db -------------------------------------->
+  contact.id = await dbContact.insert(contactTable, contact.toMap());
+  return contact;
+}
 
-  join(String databasesPath, String s) {}
+Future<Contact> getContact(int id) async{
+  Database dbContact = await _db;
+  List<Map> maps = await dbContact.query(contactTable,
+  columns: [idColumn, nomeColumn, emailColumn, phoneColumn, imgColumn],
+  where: "$idColumn =?",
+  whereArgs: [id]);
+
+    if(maps.length > 0){
+      return Contact.fromMap(maps.first)
+    } else {
+      return null;
+    }
+}
+
+//  join(String databasesPath, String s) {}
 }
 
 class Contact {
