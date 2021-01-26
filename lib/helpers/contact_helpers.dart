@@ -61,6 +61,16 @@ Future<Contact> getContact(int id) async{
     }
 }
 
+Future<int> deleteContact(int id) async {
+  Database dbContact = await _db;
+  return await dbContact.delete(contactTable, where: "$idColumn = ?", whereArgs: [id]);
+
+  }
+
+Future<int> updateContact(Contact contact) async {
+  Database dbContact = await _db;
+  return await dbContact.update(contactTable, contact.toMap(), where: "$idColumn = ?", whereArgs: [contact.id]);
+  }
 //  join(String databasesPath, String s) {}
 }
 
