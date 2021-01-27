@@ -87,6 +87,11 @@ Future<int>  getNumber() async {
     return Sqflite.firstIntValue(await dbContact.rawQuery("SELECT COUNT(*) FROM $contactTable"));
   }
 
+Future close() async {
+  Database dbContact = await _db;
+  dbContact.close();
+
+  }
 //  join(String databasesPath, String s) {}
 }
 
