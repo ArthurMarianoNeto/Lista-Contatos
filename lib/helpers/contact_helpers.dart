@@ -71,6 +71,22 @@ Future<int> updateContact(Contact contact) async {
   Database dbContact = await _db;
   return await dbContact.update(contactTable, contact.toMap(), where: "$idColumn = ?", whereArgs: [contact.id]);
   }
+
+Future<List>  getAllContacts() async {
+  Database dbContact = await _db;
+  List listMap = await dbContact.rawQuery("SELECT *FROM $contactTable");
+  List<Contact> listContact = List();
+  for(Map m in ListMap){
+    ListContact.add(Contact.fromMap(m));
+  }
+    return listContact;
+  }
+
+Future<int>  getNumber() async {
+    Database dbContact = await _db;
+    return Sqflite.firstIntValue(await dbContact.rawQuery("SELECT COUNT(*) FROM $contactTable"));
+  }
+
 //  join(String databasesPath, String s) {}
 }
 
