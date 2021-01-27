@@ -12,8 +12,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-  super.initState();
-
+    super.initState();
+/*
   Contact c = Contact();
   c.nome = "Arthur Mariano";
   c.email = "thiesto@gmail.com";
@@ -21,6 +21,10 @@ class _HomePageState extends State<HomePage> {
   c.img = "imgtest";
   
   helper.saveContact(c);
+*/
+  helper.getAllContacts().then((list){
+  print(list);
+  });
 
   }
 
