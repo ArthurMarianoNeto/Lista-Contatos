@@ -52,14 +52,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Contatos"),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.blueAccent,
         centerTitle: true,
       ),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: (){},
         child:  Icon(Icons.add),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.lightBlueAccent,
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(10.0),
