@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:contatos/helpers/contact_helpers.dart';
+import 'package:contatos/ui/contact_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -40,11 +41,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    helper.getAllContacts().then((list){
-    setState(() {
-      contacts = list;
-    });
-    });
+    _getAllContacts();
   }
 
   @override
@@ -57,7 +54,9 @@ class _HomePageState extends State<HomePage> {
       ),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          _showContactPage();
+        },
         child:  Icon(Icons.add),
         backgroundColor: Colors.lightBlueAccent,
       ),
@@ -84,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                  image: DecorationImage(
                    image: contacts[index].img != null ?
                    FileImage(File(contacts[index].img)) :
-                       AssetImage("images/Contato_Figura.png")
+                       AssetImage("images/person.jpg")
                  ),
                ),
               ),
@@ -110,6 +109,30 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      onTap: (){
+        _showContactPage(contact: contacts[index]);
+      },
     );
+  }
+  void _showContactPage({Contact contact}) async{
+   final recContact = await Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ContactPage(contact: contact,))
+    );
+      if(recContact != null){
+        if(Contact != null){
+          await helper.updateContact(recContact);
+          _getAllContacts();
+        } else {
+          await helper.saveContact(recContact);
+        }
+        _getAllContacts();
+      }
+  }
+  void _getAllContacts(){
+    helper.getAllContacts().then((list){
+      setState(() {
+        contacts = list;
+      });
+    });
   }
 }
