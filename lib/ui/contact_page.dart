@@ -66,6 +66,26 @@ class _ContactPageState extends State<ContactPage> {
                   _editedContact.nome = text;
                 });
               },
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  labelText: "e-mail "
+              ),
+              onChanged: (text){
+                _userEdited = true;
+                _editedContact.email = text;
+              },
+              keyboardType: TextInputType.emailAddress,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  labelText: "Telefone "
+              ),
+              onChanged: (text){
+                _userEdited = true;
+                _editedContact.phone = text;
+              },
+              keyboardType: TextInputType.phone,
             )
           ],
         ),
