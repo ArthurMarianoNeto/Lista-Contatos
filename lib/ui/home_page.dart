@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
+enum OrderOptions {orderaz, oderza}
 
 class HomePage extends StatefulWidget {
   @override
