@@ -46,7 +46,7 @@ class _ContactPageState extends State<ContactPage> {
       onWillPop: _requestPop,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.lightGreen,
+          backgroundColor: Colors.green,
           title: Text(_editedContact.nome ?? "Novo Contato"),
           centerTitle: true,
         ),
