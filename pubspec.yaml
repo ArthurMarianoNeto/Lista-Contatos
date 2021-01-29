@@ -57,6 +57,8 @@ flutter:
   assets:
     - images/Contato_Figura.png
     - images/Contato_Figura1.png
+    - images/Contato_Figura2.png
+    - images/Contato_Figura3.png
     - images/person.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
